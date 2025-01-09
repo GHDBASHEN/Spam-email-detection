@@ -4,17 +4,6 @@ This project is a machine learning system designed to detect spam emails using n
 
 ![{EBFBB93F-D0C6-4EC8-878A-762E6B4E4A75}](https://github.com/user-attachments/assets/d1b7786c-92f5-4b94-af05-5e97fd514cbd)
 
-
-## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Dataset](#dataset)
-- [Technologies](#technologies)
-- [Model Performance](#model-performance)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 - Loads and processes a labeled dataset of email messages.
 - Converts text into feature vectors using `CountVectorizer`.
