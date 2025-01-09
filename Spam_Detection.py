@@ -5,9 +5,12 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report
 
 # Load the dataset
-data = pd.read_csv('spam.csv', encoding='latin-1')
-data = data[['v1', 'v2']]  # Selecting relevant columns
-data.columns = ['label', 'message']  # Renaming columns
+data = pd.read_csv('spam.csv', encoding='utf-8-sig')
+#print(data.columns)
+data = data.iloc[:, [0, 1]]  # Selecting only the first two columns if they contain label and message
+data.columns = ['label', 'message']  # Rename them for convenience
+#data = data[['v1', 'v2']]  # Selecting relevant columns
+#data.columns = ['label', 'message']  # Renaming columns
 print(data.head())
 
 # Map labels to binary values (ham: 0, spam: 1)
