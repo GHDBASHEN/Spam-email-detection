@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score, classification_report
 
 # Load the dataset
 data = pd.read_csv('spam.csv', encoding='latin-1')
@@ -26,3 +27,11 @@ X_test_vec = vectorizer.transform(X_test)
 # Train a Naive Bayes model
 model = MultinomialNB()
 model.fit(X_train_vec, y_train)
+
+
+# Make predictions
+y_pred = model.predict(X_test_vec)
+
+# Evaluate
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
