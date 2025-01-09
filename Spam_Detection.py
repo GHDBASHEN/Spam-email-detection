@@ -4,13 +4,28 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report
 
-# Load the dataset
-data = pd.read_csv('spam.csv', encoding='utf-8-sig')
-#print(data.columns)
-data = data.iloc[:, [0, 1]]  # Selecting only the first two columns if they contain label and message
-data.columns = ['label', 'message']  # Rename them for convenience
-#data = data[['v1', 'v2']]  # Selecting relevant columns
-#data.columns = ['label', 'message']  # Renaming columns
+# Load the dataset with correct encoding to handle BOM
+try:
+    data = pd.read_csv('spam.csv', encoding='utf-8-sig')
+except FileNotFoundError:
+    print("Error: Dataset file 'spam.csv' not found.")
+    exit()
+
+# Display the column names for debugging
+print("Columns in dataset:", data.columns.tolist())
+
+# Display the entire dataset
+print("Full dataset:\n", data)
+
+# Select and rename the first two relevant columns
+if len(data.columns) >= 2:
+    data = data.iloc[:, :2]  # Selecting only the first two columns
+    data.columns = ['label', 'message']
+else:
+    print("Error: Dataset does not contain enough columns.")
+    exit()
+
+# Display the first few rows for confirmation
 print(data.head())
 
 # Map labels to binary values (ham: 0, spam: 1)
